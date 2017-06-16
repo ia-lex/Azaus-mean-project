@@ -24,15 +24,18 @@ function signUp (req, res) {
 }
 
 function signIn (req, res) {
-	user.find({email: req.body.email}, (err, user) => {
+	User.find({email: req.body.email}, (err, user) => {
 		if (err) {
 			return res.status(500).send({message: err})
 		}
 		if (!user) {
 			return res.status(401).send({message: 'El usuario no existe'})
 		}
-		req.user = user;
-		res.status(200).send({message: 'Te has logueado correctamente'})
+		//req.user = user;
+		return res.status(200).send({
+			message: 'Te has logueado correctamente',
+			token: service.createToken(user)
+		})
 	})
 }
 

@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const productSchema = schema({
+const productSchema = new schema({
 	name: String,
 	picture: String,
 	price: {type: Number, default: 0},
